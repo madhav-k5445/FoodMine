@@ -1,4 +1,5 @@
 header{
+    position: relative;
     background: white;
     padding: 0px;
     border-bottom: 1px solid #e72929;
@@ -11,6 +12,7 @@ a {
 a:hover{
     background-color:  #e72929;
     color: white;
+    cursor: pointer;
 }
 .container{
     margin: 0%;
@@ -24,13 +26,43 @@ a:hover{
      padding: 1em;
 }
 
-nav ul {
+ul {
+    display: flex;
        list-style-type: none;
        margin: 0%;
 }
 
-nav ul li a{
+ ul  a{
     font-weight: bold;
      padding: 1em;
      display: inline-block;
+}
+
+
+a span{
+    background: #ff4d4d;
+    color: white;
+    padding: .1rem .45rem;
+   border-radius :100rem;
+   font-size: .9rem;
+}
+
+.menu-container{
+    position: relative;
+}
+
+.menu{
+    position: absolute;
+    z-index: 1;
+    background: whitesmoke;
+    display: none;
+}
+
+.menu-container:hover  .menu{
+display:block ;
+}
+
+.menu a{
+    width: 100%;
+    min-width: 8rem;
 }

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { foodDetails } from 'src/app/shared/shared';
+
+import { sample_tags, samplefood } from 'src/app/shared/data';
+import { Tag } from 'src/app/shared/tags';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,37 +11,27 @@ export class FoodService {
   constructor() { }
 
   getAll():foodDetails[]{
-    return[
-      {
-       id:1,
-       name:"pizza",
-       price:90,
-       favorate:false,
-       stars:4.5,
-       imageUrl:"assets/images/food4.jpg",
-       origens:['italy'],
-       cookTime:"10-20"
-      }
-     ]
+    return  samplefood;
     
   }
-}
-// return[
-//   {
-//    id:1,
-//    name:"pizza",
-//    price:90,
-//    favorate:false,
-//    stars:4.5,
-//    imageUrl:"assets/images/food4.jpg",
-//    origens:['italy'],
-//    cookTime:"10-20"
-//   }
-//  ]
+    getAllFoodsBySearch(searchItem:String){
+          return this.getAll().filter(foodDetails => foodDetails.name.toLowerCase().includes(searchItem.toLowerCase()))
+    }
 
-//  "assets/images/food1.jpg",
-//  "assets/images/food2.jpg",
-//  "assets/images/food3.jpg",
-//  "assets/images/food4.jpg",
-//  "assets/images/food5.jpg",
-//  "assets/images/food6.jpg"
+
+    getAllTAgs():Tag[]{
+      return sample_tags;
+    }
+
+    getAllFoodsByTAgs(tag:string):foodDetails[]{
+       return tag ==="All"?
+       this.getAll():
+        this.getAll().filter(food => food.tags?.includes(tag))
+    }
+ 
+    getFoodById(foodId:number):foodDetails{
+      return this.getAll().find(food=>food.id == foodId) ?? new foodDetails();
+
+    }
+    
+} 

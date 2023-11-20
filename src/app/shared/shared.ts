@@ -7,7 +7,5 @@ export class foodDetails{
     imageUrl!:string;
     origens!:string[];
     cookTime!:string;
-
-
-
+    tags?:string[];
 }
