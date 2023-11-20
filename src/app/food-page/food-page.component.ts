@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { foodDetails } from '../shared/shared';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FoodService } from '../services/food/food.service';
+import { CartSService } from '../services/cart-s.service';
 
 @Component({
   selector: 'app-food-page',
@@ -10,9 +11,11 @@ import { FoodService } from '../services/food/food.service';
 })
 export class FoodPageComponent {
 
+
   food!:foodDetails;
 
-  constructor(foodsrv:FoodService,actvatedroute:ActivatedRoute,private router:Router){
+  constructor(foodsrv:FoodService,actvatedroute:ActivatedRoute,private router:Router,
+   private cartsrv: CartSService){
 
 
     actvatedroute.params.subscribe((params)=>{
@@ -21,6 +24,10 @@ export class FoodPageComponent {
     })
    
 
+  }
+  addToCart(){
+      this.cartsrv.addToCArt(this.food)
+      this.router.navigateByUrl('/cart-page')
   }
 
 }

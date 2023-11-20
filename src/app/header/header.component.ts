@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { interval } from 'rxjs';
+import { CartSService } from '../services/cart-s.service';
 
 @Component({
   selector: 'app-header',
@@ -8,26 +9,15 @@ import { interval } from 'rxjs';
 })
 export class HeaderComponent {
 
-
-  constructor(){}
+cartQuantity=0;
+  constructor( srvcart:CartSService){
+  srvcart.getCartObservable().subscribe((newCArt)=>{
+     this.cartQuantity=newCArt.totalCount;
+  })
+  }
   ngOnInit(){
 
-    const obs=interval(1000);
-    const sub1 = obs.subscribe(bro =>{
-      console.log("1st subscriber"+bro);
-    })
-
-    setTimeout(() => {
-      const sub2=obs.subscribe(bro =>[
-        console.log("2nd subscriber"+bro)
-      ]);
-      sub1.unsubscribe();
-      setTimeout(()=>{
-        sub2.unsubscribe();
-
-      },5000)
-    }, 3000);
-  
+    
 
   }
 }

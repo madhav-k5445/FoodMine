@@ -1,5 +1,5 @@
 export class foodDetails{
-    id!:number;
+    id!:string;
     name!:string;
     price!:number;
     favorate:boolean=false;
